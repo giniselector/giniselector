@@ -1,10 +1,11 @@
 <h1 align="center">
-Trusting the Untrustworthy: A Cautionary Tale on the\\Pitfalls of Training-based Rejection Option
+Trusting the Untrustworthy: A Cautionary Tale on the Pitfalls of Training-based Rejection Option
 </h1>
 
-<img src="main.png" align="center">
-
-Fig 1. 
+<p align="center">
+  <img src="main.png" width=512>
+</p>
+Fig 1. Global coverage (left) refers to the proportion of the entire dataset that is covered by a model's predictions. Low variance in global coverage means that the method consistently covers the target portion of the dataset across different independent runs. However, this consistency in overall coverage may result in a large variance in the coverage for each individual class (right). In other words, the methods may perform well in covering some classes while not performing as well in covering others.
 
 Submitted to ICML 2023.
 
@@ -22,7 +23,9 @@ Please run `pip install -r requirements.txt` to install them.
 
 ## Results
 
-<img src="images/table1.png" align="center">
+<p align="center">
+  <img src="table1.png" width=512>
+</p>
 
 ### (Optional) Environmental Variables
 
