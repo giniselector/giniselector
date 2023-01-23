@@ -49,8 +49,6 @@ def global_analysis(pred: Tensor, labels: Tensor, scores: Tensor, thr: float):
 def per_class_analysis(pred: Tensor, labels: Tensor, scores: Tensor, thr: float, class_id: int) -> dict:
     # filter per class
     filt = labels == class_id
-    # if filt.sum() == 0:
-    #     return {"acc": 0, "cov": 0, "risk": 0}
     pred = pred[filt]
     labels = labels[filt]
     scores = scores[filt]

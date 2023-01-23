@@ -49,7 +49,9 @@ def global_plots(model: str, dataset: str):
         estimator="median",
     )
     # 95% confidence interval
-    sns.lineplot(ax=ax[0], data=df, x="coverage", y="cov", hue="method", style="method", err_style="bars", markers=True)
+    sns.lineplot(
+        ax=ax[0], data=df, x="coverage", y="cov", hue="method", style="method", err_style="bars", markers=True
+    )
     ax[0].legend().remove()
     ax[1].legend().remove()
     ax[0].set_xlabel("Target Coverage")
@@ -268,7 +270,7 @@ def plot_all(args):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("--model", type=str, default="vgg16")
-    parser.add_argument("--dataset", type=str, default="cifar10")
+    parser.add_argument("--model_name", type=str, default="vgg16_cifar10")
     args = parser.parse_args()
+    args.model, args.dataset = args.model_name.split("_")
     plot_all(args)

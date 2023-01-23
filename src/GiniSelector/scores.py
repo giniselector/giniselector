@@ -9,20 +9,8 @@ def gini(logits: Tensor, temperature: float = 1):
     return 1 - g
 
 
-def msp(logits: Tensor, temperature: float = 1) -> Tensor:
-    g = torch.softmax(logits / temperature, 1).max(1)[0]
-    return 1 - g
-
-
-def ce(logits: Tensor, *args, **kwargs) -> Tensor:
-    predicted_classes = torch.argmax(logits, dim=1)
-    return torch.nn.functional.cross_entropy(logits, predicted_classes, reduction="none")
-
-
 scores_registry = {
-    "msp": msp,
     "gini": gini,
-    "ce": ce,
 }
 
 

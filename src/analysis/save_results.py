@@ -130,7 +130,7 @@ def save_all(args):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("--model", type=str, default="vgg16")
-    parser.add_argument("--dataset", type=str, default="cifar10")
+    parser.add_argument("--model_name", type=str, default="vgg16_cifar10")
     args = parser.parse_args()
+    args.model, args.dataset = args.model_name.split("_")
     save_all(args)
