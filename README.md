@@ -17,9 +17,77 @@ Please run `pip install -r requirements.txt` to install them.
 
 ## Usage
 
+This section will explain how to reproduce results.
+
+### 1. Training the models from scratch
+
+Simply run the code:
+
+```bash
+python -m src.<method>.train \
+    --model_name <model>_<dataset> \
+    --seed <seed>
+```
+
+Where the variables you can choose from:
+
+* `method`:
+  - `GiniSelector`, which will train the model with the cross-entropy loss.
+  - `SelectiveNet`.
+  - `ConfidNet`.
+  - `DeepGamblers`.
+  - `SelfAdaptiveTraining`.
+
+* `model`:
+  - `vgg16`
+  - `densenet121`
+  - `resnet34`
+
+* `dataset`:
+  - `cifar-10`
+  - `cifar-100`
+  - `svhn`
+
+* `seed`: an integer
+
+<!-- #### Or you can download the checkpoints from the release.
+
+TODO. -->
+
+### 2. Evaluating
+
+To evaluate the benchmark, please run:
+
+```bash
+python -m src.analysis.save_results \
+    --model_name <model>_<dataset>
+```
+
+The results will be exported to `.csv` in the `results/` repository and the evaluation metrics are defined in `src/utils/eval.py`
+
+### 3. Plotting
+
+Run the code:
+
+```bash
+python -m src.analysis.plots \
+    --model_name <model>_<dataset>
+```
+
+The images will be saved to the `images/` folder.
 
 ## Our Method
 
+The post-hoc `Gini` score can be plugged to any deep classifier trained with the cross-entropy loss. The function is implemented in python that take the logits as input is defined below.
+
+```python
+import torch
+
+
+def gini(logits: torch.Tensor):
+    g = torch.sum(torch.softmax(logits, 1) ** 2, 1)
+    return 1 - g
+```
 
 ## Results
 
