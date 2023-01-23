@@ -1,0 +1,15 @@
+{
+  "epochs": 300,
+  "batch_size":  128,
+  "optimizer": "sgd",
+  "lr_scheduler": "step",
+  "optimizer_kwargs": {
+      "lr": 0.1,
+      "momentum": 0.9,
+      "weight_decay": 0.0005
+  },
+  "lr_scheduler_kwargs": {
+    "step_size": 25,
+    "gamma": 0.5
+  }
+}

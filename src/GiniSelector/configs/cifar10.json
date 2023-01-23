@@ -1,0 +1,14 @@
+{
+    "epochs": 300,
+    "batch_size":  64,
+    "criterion": "crossentropy",
+    "optimizer": "sgd",
+    "lr_scheduler": "cosine_annealing",
+    "optimizer_kwargs": {
+        "lr": 0.1,
+        "momentum": 0.9,
+        "weight_decay": 5e-4,
+        "nesterov": "True"
+    },
+    "lr_scheduler_kwargs": {"T_max": 280}
+}
