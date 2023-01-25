@@ -10,13 +10,13 @@ from sklearn.model_selection import train_test_split
 from torch import Tensor, nn, optim
 from torch.optim import lr_scheduler as torch_lr_scheduler
 
-from src.SelfAdaptativeTraining.loss import SelfAdativeTrainingLoss
+from src.SelfAdaptiveTraining.loss import SelfAdaptiveTrainingLoss
 from src.utils import eval as detect_eval
 
 logger = logging.getLogger(__name__)
 
 
-class SelfAdaptativeTrainingModel(nn.Module):
+class SelfAdaptiveTrainingModel(nn.Module):
     def __init__(self, feature_extractor: nn.Module, features_dim: int, n_classes: int) -> None:
         super().__init__()
         self.feature_extractor = feature_extractor
@@ -55,7 +55,7 @@ class ModelWrapper(pl.LightningModule):
         self.optimizer_cls = optimizer_cls
         self.lr_scheduler_cls = lr_scheduler_cls
 
-        self.sat_criterion = SelfAdativeTrainingLoss(num_examples=num_examples, num_classes=num_classes, mom=0.9)
+        self.sat_criterion = SelfAdaptiveTrainingLoss(num_examples=num_examples, num_classes=num_classes, mom=0.9)
 
         self.example_input_array = (
             torch.randn(1, *self.input_dim).to(self.device, dtype=torch.float32) if self.input_dim is not None else None
@@ -194,10 +194,3 @@ class ModelWrapper(pl.LightningModule):
             )  # type: ignore
             return [optimizer], [lr_scheduler]
         return [optimizer]
-
-    def freeze_bn(self):
-        # disable bn
-        for m in self.modules():
-            if isinstance(m, nn.BatchNorm2d):
-                m.eval()
-                m.track_running_stats = False

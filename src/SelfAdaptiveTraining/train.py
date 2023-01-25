@@ -10,7 +10,7 @@ import torch.utils.data
 from pytorch_lightning import loggers as pl_loggers
 from torchvision.models.feature_extraction import create_feature_extractor
 
-from src.SelfAdaptativeTraining.model_wrapper import ModelWrapper, SelfAdaptativeTrainingModel
+from src.SelfAdaptiveTraining.model_wrapper import ModelWrapper, SelfAdaptiveTrainingModel
 from src.utils import helpers
 from src.utils.argparser import Arguments as BaseArguments
 from src.utils.datamodules import get_vision_datamodule_cls
@@ -62,7 +62,7 @@ def main(args: Arguments):
     num_classes = model_arch(input_example).shape[-1]
     feature_extractor = create_feature_extractor(model_arch, features_nodes)
     features_dim = feature_extractor(input_example)["features"].shape[-1]
-    model_arch = SelfAdaptativeTrainingModel(feature_extractor, features_dim, num_classes)
+    model_arch = SelfAdaptiveTrainingModel(feature_extractor, features_dim, num_classes)
 
     # data
     logger.info(args.dataset_name)

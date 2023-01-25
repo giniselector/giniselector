@@ -3,7 +3,7 @@ import torch
 import torch.nn.functional as F
 
 
-class SelfAdativeTrainingLoss:
+class SelfAdaptiveTrainingLoss:
     def __init__(self, num_examples=50000, num_classes=10, mom=0.9):
         self.prob_history = torch.zeros(num_examples, num_classes)
         self.updated = torch.zeros(num_examples, dtype=torch.int)

@@ -206,10 +206,3 @@ class ModelWrapper(pl.LightningModule):
             )  # type: ignore
             return [optimizer], [lr_scheduler]
         return [optimizer]
-
-    def freeze_bn(self):
-        # disable bn
-        for m in self.modules():
-            if isinstance(m, nn.BatchNorm2d):
-                m.eval()
-                m.track_running_stats = False

@@ -4,8 +4,8 @@ import torch
 from torch import Tensor
 
 
-def gini(logits: Tensor, temperature: float = 1):
-    g = torch.sum(torch.softmax(logits / temperature, 1) ** 2, 1)
+def gini(logits: Tensor):
+    g = torch.sum(torch.softmax(logits, 1) ** 2, 1)
     return 1 - g
 
 

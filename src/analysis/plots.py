@@ -49,9 +49,7 @@ def global_plots(model: str, dataset: str):
         estimator="median",
     )
     # 95% confidence interval
-    sns.lineplot(
-        ax=ax[0], data=df, x="coverage", y="cov", hue="method", style="method", err_style="bars", markers=True
-    )
+    sns.lineplot(ax=ax[0], data=df, x="coverage", y="cov", hue="method", style="method", err_style="bars", markers=True)
     ax[0].legend().remove()
     ax[1].legend().remove()
     ax[0].set_xlabel("Target Coverage")
